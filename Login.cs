@@ -40,11 +40,12 @@ namespace Abarrotes_DonMemo_2._0
             }
         }
 
+        public Usuarios usuario_actual { get; private set; }    
         private void btnIngresar_Click(object sender, EventArgs e)
         {
             string usuario_ingresado = txtUser.Text.Trim();
             string password_ingresado = txtPassword.Text.Trim();
-            Usuarios usuario_correcto = new Usuarios { pUsername = usuario_ingresado, pPassword = password_ingresado };
+            Usuarios usuario_correcto = new Usuarios { pUsername = usuario_ingresado, pPassword = password_ingresado};
             Usuarios usuario = null;
             foreach (var u in listaUsuarios)
             {
@@ -59,15 +60,18 @@ namespace Abarrotes_DonMemo_2._0
             {
                 if (usuario.pPrivilegio == "admin")
                 {
+                    usuario_actual = usuario_correcto;
+                    usuario_actual.pPrivilegio = "admin";
                     MessageBox.Show("¡Inicio de sesión correcto!\nIngresando como: Administrador","LOGIN EXITOSO!",MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.DialogResult = DialogResult.OK;
-                    
+                   
                 }
                 else if (usuario.pPrivilegio == "cajero")
                 {
+                    usuario_actual = usuario_correcto;
+                    usuario_actual.pPrivilegio = "cajero";
                     MessageBox.Show("¡Inicio de sesión correcto!\nIngresando como: Cajero", "LOGIN EXITOSO!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.DialogResult = DialogResult.OK;
-                    this.Tag = "cajero";
                 }
             }
             else
@@ -77,6 +81,7 @@ namespace Abarrotes_DonMemo_2._0
         }
 
     }
+
     public class Usuarios
     {
         private string Username;

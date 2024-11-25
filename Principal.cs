@@ -1,23 +1,41 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Abarrotes_DonMemo_2._0
 {
     public partial class Principal : Form
     {
+        private Usuarios usuario_actual;
 
-        public Principal()
+        public Principal(Usuarios usuario)
         {
             InitializeComponent();
+            usuario_actual = usuario;
+            ConfigurarInterfaz();
         }
-
+        private void ConfigurarInterfaz()
+        {
+            if (usuario_actual.pPrivilegio == "admin")
+            {
+                serviciosToolStripMenuItem.Enabled = true;
+                reportesToolStripMenuItem.Enabled = true;
+                acerToolStripMenuItem.Enabled = true;
+                serviciosToolStripMenuItem.Visible = true;
+                reportesToolStripMenuItem.Visible = true;
+                acerToolStripMenuItem.Visible = true;
+            }
+            else if (usuario_actual.pPrivilegio == "cajero")
+            {
+                serviciosToolStripMenuItem.Enabled = false;
+                reportesToolStripMenuItem.Enabled = false;
+                acerToolStripMenuItem.Enabled = false;
+                serviciosToolStripMenuItem.Visible = false;
+                reportesToolStripMenuItem.Visible = false;
+                acerToolStripMenuItem.Visible = false;
+            }
+        }
         private void productosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RegistroProductos ventana = Application.OpenForms.OfType<RegistroProductos>().FirstOrDefault();
@@ -41,7 +59,7 @@ namespace Abarrotes_DonMemo_2._0
 
         private void salirToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("¿Está seguro que desea salir de la aplicación?", "ATENCIÓN", 
+            DialogResult result = MessageBox.Show("¿Está seguro que desea salir de la aplicación?", "ATENCIÓN",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
             {
@@ -105,7 +123,7 @@ namespace Abarrotes_DonMemo_2._0
         private void cerrarSesionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
-            Application.Restart();
+            Application.Restart();  
         }
     }
 }

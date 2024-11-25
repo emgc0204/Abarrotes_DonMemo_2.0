@@ -19,7 +19,8 @@ namespace Abarrotes_DonMemo_2._0
             Login log = new Login();
             if (log.ShowDialog() == DialogResult.OK )
             {
-                Application.Run(new Principal());
+                Principal principalform = new Principal(log.usuario_actual);
+                Application.Run(principalform);
             }
         }
     }
