@@ -16,7 +16,11 @@ namespace Abarrotes_DonMemo_2._0
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Principal());
+            Login log = new Login();
+            if (log.ShowDialog() == DialogResult.OK )
+            {
+                Application.Run(new Principal());
+            }
         }
     }
 }

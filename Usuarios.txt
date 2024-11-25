@@ -1,0 +1,2 @@
+Emiliano,Donmemo123,admin
+Oved,Pass123,cajero

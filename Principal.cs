@@ -94,6 +94,18 @@ namespace Abarrotes_DonMemo_2._0
 
         private void ventasToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cerrarSesionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Application.Restart();
         }
     }
 }
